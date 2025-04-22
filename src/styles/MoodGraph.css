@@ -1,0 +1,64 @@
+.mood-graph {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .chart-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--card-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .weekly-moods {
+    background-color: var(--card-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .weekly-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .weekly-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 20px;
+  }
+  
+  .mood-indicator {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+  }
+  
+  .no-data {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-color);
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  @media (max-width: 600px) {
+    .weekly-list {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .weekly-item {
+      width: 100%;
+    }
+  }

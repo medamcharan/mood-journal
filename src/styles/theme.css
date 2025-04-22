@@ -1,0 +1,17 @@
+.light-theme {
+    --primary-color: #4a6fa5;
+    --secondary-color: #166088;
+    --background-color: #f8f9fa;
+    --text-color: #333;
+    --card-bg: #fff;
+    --border-color: #ddd;
+  }
+  
+  .dark-theme {
+    --primary-color: #5d8bf4;
+    --secondary-color: #3d5a80;
+    --background-color: #121212;
+    --text-color: #f8f9fa;
+    --card-bg: #1e1e1e;
+    --border-color: #444;
+  }
