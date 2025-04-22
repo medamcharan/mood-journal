@@ -23,6 +23,12 @@ function App() {
     localStorage.setItem('moodJournalEntries', JSON.stringify(updatedEntries))
   }
 
+  const addMultipleEntries = (newEntry) => {
+    const updatedEntries = [...entries, newEntry]
+    setEntries(updatedEntries)
+    localStorage.setItem('moodJournalEntries', JSON.stringify(updatedEntries))
+  }
+
   return (
     <ThemeProvider>
       <div className="app-container">
@@ -34,8 +40,8 @@ function App() {
           {activeView === 'entry' && (
             <MoodEntryForm 
               selectedDate={selectedDate} 
-              saveEntry={saveEntry} 
-              existingEntry={entries.find(e => e.date === format(selectedDate, 'yyyy-MM-dd'))}
+              saveEntry={addMultipleEntries} 
+              existingEntryList={entries.filter(e => e.date === format(selectedDate, 'yyyy-MM-dd'))} // Pass all previous entries
             />
           )}
           

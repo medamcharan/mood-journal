@@ -15,12 +15,13 @@ const moodOptions = [
 function MoodEntryForm({ selectedDate, saveEntry, existingEntryList }) {
   const [selectedMood, setSelectedMood] = useState(null)
   const [notes, setNotes] = useState('')
-  const [submitted, setSubmitted] = useState(false)
-  const { weather, loading, error } = useWeather()
+  const [showConfirmation, setShowConfirmation] = useState(false)
+  const { weather, loading } = useWeather()
 
   useEffect(() => {
     setSelectedMood(null)
     setNotes('')
+    setShowConfirmation(false)
   }, [selectedDate])
 
   const handleSubmit = (e) => {
@@ -40,11 +41,16 @@ function MoodEntryForm({ selectedDate, saveEntry, existingEntryList }) {
       } : null
     }
 
-    saveEntry(entry)
-    setSubmitted(true)
+    saveEntry(entry) 
+
+    setShowConfirmation(true)
     setNotes('')
     setSelectedMood(null)
-    setTimeout(() => setSubmitted(false), 3000)
+
+    // Show confirmation for 2 seconds
+    setTimeout(() => {
+      setShowConfirmation(false)
+    }, 2000)
   }
 
   return (
@@ -96,16 +102,18 @@ function MoodEntryForm({ selectedDate, saveEntry, existingEntryList }) {
           />
         </div>
 
-        <button
-          type="submit"
-          className="submit-button"
-          disabled={!selectedMood}
-        >
-          <span className="button-text">Save Entry</span>
-          <span className="button-icon">✓</span>
-        </button>
+        {!showConfirmation && (
+          <button
+            type="submit"
+            className="submit-button"
+            disabled={!selectedMood}
+          >
+            <span className="button-text">Save Entry</span>
+            <span className="button-icon">✓</span>
+          </button>
+        )}
 
-        {submitted && (
+        {showConfirmation && (
           <div className="confirmation-message">
             <svg className="checkmark" viewBox="0 0 52 52">
               <circle className="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
@@ -120,7 +128,7 @@ function MoodEntryForm({ selectedDate, saveEntry, existingEntryList }) {
         <h3>Previous Entries for This Day</h3>
         {existingEntryList && existingEntryList.length > 0 ? (
           <div className="entries-grid">
-            {existingEntryList.map((entry, index) => (
+            {[...existingEntryList].reverse().map((entry, index) => (
               <div key={entry.id || index} className="entry-card">
                 <div className="entry-header">
                   <span className="entry-time">{entry.time}</span>

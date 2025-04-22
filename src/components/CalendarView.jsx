@@ -125,9 +125,8 @@ function CalendarView({ entries, selectedDate, setSelectedDate, setActiveView })
 
       {filteredEntries.length > 0 && (
         <div className="entries-list">
-            <div className="entries-listt">
+            
           <h3>Filtered Entries</h3>
-          </div>
           {filteredEntries.map(entry => (
             <div 
               key={entry.id} 
